@@ -78,6 +78,8 @@
 <script setup>
 import { ElMessageBox } from "element-plus";
 import { getCodeImg, register } from "@/api/login";
+import {useRouter} from "vue-router";
+import {getCurrentInstance, ref} from "vue";
 
 const router = useRouter();
 const { proxy } = getCurrentInstance();
@@ -116,7 +118,7 @@ const registerRules = {
 
 const codeUrl = ref("");
 const loading = ref(false);
-const captchaEnabled = ref(true);
+const captchaEnabled = ref(false);
 
 function handleRegister() {
   proxy.$refs.registerRef.validate(valid => {
@@ -144,13 +146,13 @@ function getCode() {
   getCodeImg().then(res => {
     captchaEnabled.value = res.captchaEnabled === undefined ? true : res.captchaEnabled;
     if (captchaEnabled.value) {
-      codeUrl.value = "data:image/gif;base64," + res.img;
-      registerForm.value.uuid = res.uuid;
+      codeUrl.value = "data:image/gif;base64," + res.data.img;
+      registerForm.value.uuid = res.data.uuid;
     }
   });
 }
 
-getCode();
+//getCode();
 </script>
 
 <style lang='scss' scoped>

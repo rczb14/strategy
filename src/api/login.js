@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-// 登录方法
+/*// 登录方法
 export function login(username, password, code, uuid) {
   const data = {
     username,
@@ -9,7 +9,19 @@ export function login(username, password, code, uuid) {
     uuid
   }
   return request({
-    url: '/login',
+    url: '/user/login',
+    headers: {
+      isToken: false
+    },
+    method: 'post',
+    data: data
+  })
+}*/
+
+// 登录方法
+export function login(data) {
+  return request({
+    url: '/user/login',
     headers: {
       isToken: false
     },
@@ -21,7 +33,7 @@ export function login(username, password, code, uuid) {
 // 注册方法
 export function register(data) {
   return request({
-    url: '/register',
+    url: '/user/register',
     headers: {
       isToken: false
     },
@@ -49,7 +61,7 @@ export function logout() {
 // 获取验证码
 export function getCodeImg() {
   return request({
-    url: '/captchaImage',
+    url: '/user/captchaImage',
     headers: {
       isToken: false
     },

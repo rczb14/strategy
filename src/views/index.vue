@@ -945,6 +945,8 @@
 </template>
 
 <script setup name="Index">
+import {ref} from "vue";
+
 const version = ref('3.8.6')
 
 function goTarget(url) {
