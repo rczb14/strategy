@@ -83,8 +83,8 @@ const router = useRouter();
 const {proxy} = getCurrentInstance();
 
 const loginForm = ref({
-  username: "admin",
-  password: "admin123",
+  username: "kyc",
+  password: "20220524",
   rememberMe: false,
   code: "",
   uuid: ""
@@ -122,6 +122,7 @@ function handleLogin() {
       // 调用action的登录方法
       loginForm.value.type = "1";
       userStore.login(loginForm.value).then(() => {
+        loading.value = false;
         router.push({path: redirect.value || "/"});
       }).catch(() => {
         loading.value = false;

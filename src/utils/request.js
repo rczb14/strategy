@@ -68,7 +68,7 @@ service.interceptors.request.use(config => {
 // 响应拦截器
 service.interceptors.response.use(res => {
         // 未设置状态码则默认成功状态
-        const code = res.data.code || 200;
+        const code = res.data.code || 0;
         // 获取错误信息
         console.log(res)
         const msg = errorCode[code] || res.data.message || errorCode['default']
@@ -99,9 +99,9 @@ service.interceptors.response.use(res => {
         } else if (code === 601) {
             ElMessage({message: msg, type: 'warning'})
             return Promise.reject(new Error(msg))
-        } else if (code !== 200) {
+        } else if (code !== 0) {
             ElNotification.error({title: msg})
-            return Promise.reject('error')
+            return Promise.reject(msg)
         } else {
             return Promise.resolve(res.data)
         }

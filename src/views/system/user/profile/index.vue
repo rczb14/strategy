@@ -15,23 +15,15 @@
                   <ul class="list-group list-group-striped">
                      <li class="list-group-item">
                         <svg-icon icon-class="user" />用户名称
-                        <div class="pull-right">{{ state.user.userName }}</div>
+                        <div class="pull-right">{{ state.user.username }}</div>
                      </li>
                      <li class="list-group-item">
                         <svg-icon icon-class="phone" />手机号码
-                        <div class="pull-right">{{ state.user.phonenumber }}</div>
+                        <div class="pull-right">{{ state.user.mobile }}</div>
                      </li>
                      <li class="list-group-item">
                         <svg-icon icon-class="email" />用户邮箱
                         <div class="pull-right">{{ state.user.email }}</div>
-                     </li>
-                     <li class="list-group-item">
-                        <svg-icon icon-class="tree" />所属部门
-                        <div class="pull-right" v-if="state.user.dept">{{ state.user.dept.deptName }} / {{ state.postGroup }}</div>
-                     </li>
-                     <li class="list-group-item">
-                        <svg-icon icon-class="peoples" />所属角色
-                        <div class="pull-right">{{ state.roleGroup }}</div>
                      </li>
                      <li class="list-group-item">
                         <svg-icon icon-class="date" />创建日期
@@ -67,6 +59,7 @@ import userAvatar from "./userAvatar";
 import userInfo from "./userInfo";
 import resetPwd from "./resetPwd";
 import { getUserProfile } from "@/api/system/user";
+import {reactive, ref} from "vue";
 
 const activeTab = ref("userinfo");
 const state = reactive({

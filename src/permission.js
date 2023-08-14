@@ -27,7 +27,8 @@ router.beforeEach((to, from, next) => {
         // 判断当前用户是否已拉取完user_info信息
         useUserStore().getInfo().then(() => {
           isRelogin.show = false
-          usePermissionStore().generateRoutes().then(accessRoutes => {
+          next()
+          /*usePermissionStore().generateRoutes().then(accessRoutes => {
             // 根据roles权限生成可访问的路由表
             accessRoutes.forEach(route => {
               if (!isHttp(route.path)) {
@@ -35,10 +36,9 @@ router.beforeEach((to, from, next) => {
               }
             })
             next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
-          })
+          })*/
         }).catch(err => {
           useUserStore().logOut().then(() => {
-            ElMessage.error(err)
             next({ path: '/' })
           })
         })
